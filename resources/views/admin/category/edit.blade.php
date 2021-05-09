@@ -15,44 +15,7 @@
         @endif
 
         <div class="row">
-            <div class="col md-8">
-                <div class="card">
-                    <div class="card-header">
-                        All Category
-                    </div>
-
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Category name</th>
-                    <th scope="col">User</th>
-                    <th scope="col">created_at</th>
-                    <th scope="col">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                @if($categories)
-                    <tr>
-                        <th scope="row">{{$categories-> id}}</th>
-                        <td>{{$categories-> category_name}}</td>
-                        <td>{{$categories-> users-> name}}</td>
-                        <td>{{Carbon\Carbon::parse($categories-> created_at)-> diffForHumans()}}</td>
-                        <td>
-                            <a href="">
-                            <button class="btn btn-primary">
-                                Edit
-                            </button>
-                            </a>
-                        </td>
-                    </tr>
-                @endif
-                </tbody>
-            </table>
-                </div>
-            </div>
-
-            <div class="col md-4">
+            <div class="col md-10">
                 <div class="card">
                     <div class="card-header">
                         Add Category
@@ -74,6 +37,7 @@
 
                 </div>
             </div>
+
         </div>
 
     </div>

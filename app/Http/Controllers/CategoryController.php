@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
-use App\Http\Requests\CatRequest;
 use App\Models\Category;
 use App\Models\User;
 use Carbon\Carbon;
@@ -16,9 +15,9 @@ class CategoryController extends Controller
 {
     public function AllCat(){
         //$categories = DB::table('categories')->latest()->get();
-          $categories = Category::latest()-> paginate(PAGINATION);
-        $trash = Category::onlyTrashed()->latest()-> paginate(PAGINATION);
-        return view('admin.category.index',compact('categories','trash'));
+          $categories = Category::latest()-> paginate(3);
+        $trash = Category::onlyTrashed()->latest()-> paginate(3);
+        return view('Admin.category.index',compact('categories','trash'));
     }
 
     public function store(CategoryRequest $request){
@@ -41,11 +40,11 @@ class CategoryController extends Controller
     public function edit($id){
         //$categories = DB::table('categories')->latest()->get();
          $categories = Category::find($id);
-        return view('admin.category.edit',compact('categories'));
+        return view('Admin.category.edit',compact('categories'));
     }
     public function update(CategoryRequest $request, $id){
         //$categories = DB::table('categories')->latest()->get();
-        $categories = Category::latest()-> paginate(PAGINATION) -> find($id);
+        $categories = Category::latest()-> paginate(3) -> find($id);
         $categories -> update([
             'category_name' => $request -> category_name,
         ]);

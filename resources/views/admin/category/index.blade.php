@@ -36,7 +36,7 @@
                     <tr>
                         <th scope="row">{{$categories -> firstItem()+$loop->index}}</th>
                         <td>{{$category -> category_name}}</td>
-                        <td>{{$category -> users -> name}}</td>
+                        <td>{{$category -> category_name}}</td>
                         <td>{{Carbon\Carbon::parse($category -> created_at)-> diffForHumans()}}</td>
                         <td>
                             <a class="btn btn-primary" href="{{route('category.edit',$category -> id)}}">Edit</a>

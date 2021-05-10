@@ -4,13 +4,13 @@
     <div class="container mt-5">
         <div class="row d-flex">
             <div class="col-md-8">
-    <form action="{{route('contact.store')}}" method="POST">
+    <form action="{{route('contactForm.store')}}" method="POST">
         @csrf
         <div class="form-row">
             <div class="col-md-12 mb-3">
-                <label for="validationServer01">Address</label>
-                <input name="address" type="text" class="form-control" id="validationServer01" placeholder="Your Address">
-                @error('address')
+                <label for="Name">Name</label>
+                <input name="name" type="text" class="form-control" placeholder="Your Name">
+                @error('name')
                 <div class="text-danger">
                    {{$message}}
                 </div>
@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-12 mb-3">
                 <label for="email">E-mail</label>
-                <input name="email" class="form-control" id="validationServer02" placeholder="Your E-mail">
+                <input name="email" class="form-control" placeholder="Your E-mail">
                 @error('email')
                 <div class="text-danger">
                     {{$message}}
@@ -27,14 +27,25 @@
             </div>
 
             <div class="col-md-12 mb-3">
-                <label for="email">Phone</label>
-                <input name="phone" type="phone" class="form-control" id="validationServer02" placeholder="Your Phone Number">
-                @error('phone')
+                <label for="subject">Subject</label>
+                <input name="subject" type="subject" class="form-control" placeholder="Your Subject">
+                @error('subject')
                 <div class="text-danger">
                     {{$message}}
                 </div>
                 @enderror
             </div>
+
+            <div class="col-md-12 mb-3">
+                <label for="message">Message</label>
+                <textarea name="message" class="form-control" placeholder="Type Your Message Here"></textarea>
+                @error('message')
+                <div class="text-danger">
+                    {{$message}}
+                </div>
+                @enderror
+            </div>
+
 
         </div>
         <button class="btn btn-primary" type="submit">Add contact</button>

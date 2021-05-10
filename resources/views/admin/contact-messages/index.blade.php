@@ -12,7 +12,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <a href="{{route('contact.create')}}">
+                <a href="{{route('contactForm.create')}}">
                     <button class="btn btn-alert btn-primary">Create new contact</button>
                 </a>
                 <div class="card">
@@ -23,25 +23,25 @@
                         <thead>
                         <tr>
                             <th scope="col" style="width:10%">id</th>
-                            <th scope="col" style="width:10%">address</th>
-                            <th scope="col" style="width:25%">email</th>
-                            <th scope="col" style="width:25%">phone</th>
+                            <th scope="col" style="width:10%">name</th>
+                            <th scope="col" style="width:25%">subject</th>
+                            <th scope="col" style="width:25%">message</th>
                             <th scope="col" style="width:15%">created_at</th>
                             <th scope="col" style="width:15%">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        @foreach($contact as $_contact)
+                        @foreach($messages as $message)
                             <tr>
-                                <th scope="row">{{$_contact -> id}}</th>
-                                <td>{{$_contact -> address}}</td>
-                                <td> {{$_contact -> email}}</td>
-                                <td> {{$_contact -> phone}}</td>
-                                <td>{{Carbon\Carbon::parse($_contact -> created_at)-> diffForHumans()}}</td>
+                                <th scope="row">{{$message -> id}}</th>
+                                <td>{{$message -> name}}</td>
+                                <td> {{$message -> subject}}</td>
+                                <td> {{$message -> message}}</td>
+                                <td>{{Carbon\Carbon::parse($message -> created_at)-> diffForHumans()}}</td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{route('contact.edit',$_contact ->id)}}">Edit</a>
-                                    <a class="btn btn-danger" href="{{route('contact.delete',$_contact ->id)}}">
+                                    <a class="btn btn-primary" href="{{route('contactForm.edit',$message ->id)}}">Edit</a>
+                                    <a class="btn btn-danger" href="{{route('contactForm.delete',$message ->id)}}">
                                         Delete
                                     </a>
                                 </td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Visitors;
 use App\Http\Controllers\Controller;
 use App\Models\About;
 use App\Models\Brand;
+use App\Models\Contact;
 use App\Models\MultiImages;
 use App\Models\Slider;
 use Illuminate\Http\Request;
@@ -28,10 +29,11 @@ class VisitorsController extends Controller
         return view('users.pages.pricing');
     }
     public function contact(){
-        return view('users.pages.contact-us');
+        $contact = Contact::latest()->get()->first();
+        return view('users.pages.contact-us', compact('contact'));
     }
     public function portfolio(){
-        $images = MultiImages::latest()-> get();
+        $images = MultiImages::latest()-> get()-> first();
         return view('users.pages.portfolio', compact('images'));
     }
     public function team(){

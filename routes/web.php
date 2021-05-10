@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\LogoutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactForm;
 use App\Http\Controllers\MultiController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
@@ -94,13 +96,26 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function(){
     ######## End Multi Images ######
 
     ######## contact ##########
-    Route::get('/contact-index', [AboutController::class,'index'])-> name('contact.index');
-    Route::get('/contact-create', [AboutController::class,'create'])-> name('contact.create');
-    Route::post('/contact-store', [AboutController::class,'store'])-> name('contact.store');
-    Route::get('/contact-edit/{id}', [AboutController::class,'edit'])-> name('contact.edit');
-    Route::post('/contact-update/{id}', [AboutController::class,'update'])-> name('contact.update');
-    Route::get('/contact-delete/{id}', [AboutController::class,'delete'])-> name('contact.delete');
+    Route::get('/contact-index', [ContactController::class,'index'])-> name('contact.index');
+    Route::get('/contact-create', [ContactController::class,'create'])-> name('contact.create');
+    Route::post('/contact-store', [ContactController::class,'store'])-> name('contact.store');
+    Route::get('/contact-edit/{id}', [ContactController::class,'edit'])-> name('contact.edit');
+    Route::post('/contact-update/{id}', [ContactController::class,'update'])-> name('contact.update');
+    Route::get('/contact-delete/{id}', [ContactController::class,'delete'])-> name('contact.delete');
     ######## end contact ######
 
+    ######## contact form ##########
+    Route::post('/contact-form', [ContactController::class,'contactForm'])-> name('contact.form');
+    Route::get('/form-index', [ContactForm::class,'indexForm'])-> name('contactForm.index');
+    Route::get('/form-create', [ContactForm::class,'createForm'])-> name('contactForm.create');
+    Route::post('/form-store', [ContactForm::class,'storeForm'])-> name('contactForm.store');
+    Route::get('/form-edit/{id}', [ContactForm::class,'editForm'])-> name('contactForm.edit');
+    Route::post('/form-update/{id}', [ContactForm::class,'updateForm'])-> name('contactForm.update');
+    Route::get('/form-delete/{id}', [ContactForm::class,'deleteForm'])-> name('contactForm.delete');
+    ######## end contact form######
+
+    ######## Change Password######
+    Route::post('/user-chPassword', [ContactController::class,'changePass'])-> name('change.password');
+    ######## end Change Password######
 
 });

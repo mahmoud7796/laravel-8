@@ -84,12 +84,12 @@
                         <div class="sub-menu">
                             <li  class="active" >
                                 <a class="sidenav-item-link" href="{{route('contact.index')}}">
-                                    <span class="nav-text">Contact profile</span>
+                                    <span class="nav-text">Contact management</span>
                                 </a>
                             </li>
                             <li  class="active" >
-                                <a class="sidenav-item-link" href="">
-                                    <span class="nav-text">Contact management</span>
+                                <a class="sidenav-item-link" href="{{route('contactForm.index')}}">
+                                    <span class="nav-text">Contact Messages</span>
                                 </a>
                             </li>
 

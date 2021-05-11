@@ -29,7 +29,11 @@ class BrandController extends Controller
            'brand_name' => $request -> brand_name,
             'brand_image' => $photo
         ]);
-        return redirect()-> route('brand.index')-> with(['success'=> 'تم الحفظ بنجاح']);
+        $notification = array(
+            'message' => 'تم الحفظ بنجاح',
+            'alert-type' => 'success',
+        );
+        return redirect()-> route('brand.index')-> with($notification);
     }
 
     public function edit($id){
@@ -59,7 +63,11 @@ class BrandController extends Controller
        $brand = Brand::find($id);
        $this -> DeleteImage($brand->brand_image, 'brand','images/brand');
        $brand -> delete();
-        return redirect()-> route('brand.index')-> with(['success'=> 'تم الحذف بنجاح']);
+        $notification = array(
+            'message' => 'تم الحفظ بنجاح',
+            'alert-type' => 'warning',
+        );
+        return redirect()-> route('brand.index')-> with($notification);
     }
 
 }

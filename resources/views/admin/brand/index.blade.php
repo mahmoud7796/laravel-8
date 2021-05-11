@@ -2,13 +2,6 @@
 
 @section('content')
     <div class="py-12 container">
-        @if(Session('success'))
-            <div class="row mr-2 ml-2 py-2">
-                <button type="text" class="btn btn-lg btn-block btn-outline-success mb-2"
-                        id="type-error">{{Session('success')}}
-                </button>
-            </div>
-        @endif
 
         <div class="row">
             <div class="col-md-8">

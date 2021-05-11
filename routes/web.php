@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\ChangePassController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\LogoutController;
 use App\Http\Controllers\BrandController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactForm;
 use App\Http\Controllers\MultiController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Visitors\VisitorsController;
@@ -34,6 +36,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin-login', [LoginController::class,'adminLogin'])-> name('admin.login');
+Route::get('/admin-register', [AdminController::class,'register'])->name('admin.signup');
+
+Route::group(['middleware'=> 'auth:sanctum'], function () {
+    Route::get('/dashboard', [AdminController::class,'master'])->name('dashboard')-> middleware('verified');
+    Route::get('/admin-logout', [LogoutController::class,'logout'])->name('user.logout');
+});
+
 Route::group(['middleware'=> 'auth:sanctum'], function () {
    // Route::get('/dashboard', [UserController::class,'getData'])-> name('dashboard')->middleware('verified');
     Route::get('/all-category', [CategoryController::class,'AllCat'])-> name('all.category');
@@ -50,13 +60,7 @@ Route::group(['middleware'=> 'auth:sanctum'], function () {
     Route::get('/brand-delete/{id}', [BrandController::class,'delete'])-> name('brand.delete');
 
 });
-Route::get('/admin-login', [LoginController::class,'adminLogin'])-> name('admin.login');
-Route::get('/admin-register', [AdminController::class,'register'])->name('admin.signup');
 
-Route::group(['middleware'=> 'auth:sanctum'], function () {
-     Route::get('/dashboard', [AdminController::class,'master'])->name('dashboard');
-     Route::get('/admin-logout', [LogoutController::class,'logout'])->name('user.logout');
-});
 
 Route::group(['prefix' => 'home', 'middleware' => 'auth'], function(){
 
@@ -115,7 +119,13 @@ Route::group(['prefix' => 'home', 'middleware' => 'auth'], function(){
     ######## end contact form######
 
     ######## Change Password######
-    Route::post('/user-chPassword', [ContactController::class,'changePass'])-> name('change.password');
+    Route::get('/user-chPassword', [ChangePassController::class,'changePass'])-> name('change.password');
+    Route::post('/user-chPassword-update', [ChangePassController::class,'update'])-> name('update.password');
     ######## end Change Password######
+
+    ######## Profile Update######
+    Route::get('/profile-index', [ProfileController::class,'index'])-> name('profile.index');
+    Route::post('/profile-update', [ProfileController::class,'update'])-> name('update.profile');
+    ######## end Profile Update######
 
 });

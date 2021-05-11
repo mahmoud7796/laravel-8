@@ -60,8 +60,14 @@
                         </a>
                     </div>
                 </div>
+                @if(Session('success'))
+                    <div class="row mr-2 ml-2 py-2">
+                        <button type="text" class="btn btn-lg btn-block btn-outline-success mb-2"
+                                id="type-error">{{Session('success')}}
+                        </button>
+                    </div>
+                @endif
                 <div class="card-body p-5">
-
                     <h4 class="text-dark mb-5">Sign In</h4>
                     <form method="POST" action="{{route('login')}}">
                         @csrf
